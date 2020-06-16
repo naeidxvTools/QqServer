@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author 展龙
+ */
 public class MyServerFrame extends JFrame implements ActionListener
 {
     JPanel jPanel;

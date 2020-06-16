@@ -9,6 +9,10 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * @author 展龙
+ */
+
 public class MyQqServer
 {
     public MyQqServer()
@@ -23,12 +27,12 @@ public class MyQqServer
                 Socket socket = serverSocket.accept();
                 ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 
-                User user = (User)ois.readObject();
+                User user = (User) ois.readObject();
                 System.out.println(user.getUserId() + ", " + user.getPassword());
 
                 Message message = new Message();
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                if (user.getPassword().equals("123"))
+                if ("123".equals(user.getPassword()))
                 {
                     message.setMesType("1");
                     oos.writeObject(message);
@@ -37,16 +41,12 @@ public class MyQqServer
                     ServerConClientThread serverConClientThread = new ServerConClientThread(socket);
                     ManageClientThread.addClientThread(user.getUserId(), serverConClientThread);
                     serverConClientThread.start();
-
-                }else
+                } else
                 {
                     message.setMesType("2");
                     oos.writeObject(message);
                     socket.close();
-
                 }
-
-
             }
 
         } catch (Exception e)
