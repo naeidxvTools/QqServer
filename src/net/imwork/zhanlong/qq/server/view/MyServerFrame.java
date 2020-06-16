@@ -17,14 +17,7 @@ public class MyServerFrame extends JFrame implements ActionListener
         jb1 = new JButton("启动服务器");
         jb1.addActionListener(this);
         jb2 = new JButton("关闭服务器");
-        jb2.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                System.out.println("ok");
-            }
-        });
+        jb2.addActionListener(e -> System.out.println("关闭服务器"));
 
         jPanel.add(jb1);
         jPanel.add(jb2);
@@ -47,10 +40,12 @@ public class MyServerFrame extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
+        System.out.println("启动服务器开始....");
         if (e.getSource() == jb1)
         {
             new MyQqServer();
         }
+        System.out.println("启动服务器结束....");
 
     }
 }
